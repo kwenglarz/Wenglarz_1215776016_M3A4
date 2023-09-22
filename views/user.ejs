@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page</title>
+</head>
+<body>
+    <h1>User Information</h1>
+    <p>Username: <%=  user.username%></p>
+    <p>Email: <%= user.email %></p>
+    <p>Password: <%= user.password %></p>
+
+    <br>
+
+    <h2>Update Info</h2>
+    <form action="/api/v1/users/<%=user.username%>/update-info" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+
+        <input type="submit" value="Update Info">
+    </form>
+
+    <br>
+
+    <h2>Update password</h2>
+    <form action="/api/v1/users/<%=user.username%>/update-password" method="POST">
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirmationPassword">Confirm Password:</label>
+        <input type="password" id="confirmationPassword" name="confirmationPassword" required>
+
+        <input type="submit" value="Update Password">
+    </form>
+</body>
+</html>
