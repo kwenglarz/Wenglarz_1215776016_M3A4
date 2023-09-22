@@ -12,12 +12,23 @@ const register = (req, res) => {
 }
 
 const addUsersVerifier = (req, res, next) => {
-    const user = req.body;
+    const newUser = req.body;
 
-    if (user.password !== user.confirmationPassword) {
+    if (newUser.password !== newUser.confirmationPassword) {
         failedAddUserAttempt = true;
         failureMessage = `Passwords must match. Please try again.`;
         renderRegister(res);
+        return;
+    } 
+
+    const existingUser = 
+        users.filter(user => user.username === newUser.username || user.email === newUser.email).length;
+
+    if(existingUser > 0) {
+        failedAddUserAttempt = true;
+        failureMessage = `User must have unique username and email. Username or email already in use.`;
+        renderRegister(res);
+        return;
     } else {
         failedAddUserAttempt = false;
         failureMessage = ``;
