@@ -53,8 +53,6 @@ const userLoginPage = (req, res) => {
 const onUserLoginAction = (req, res) => {
     const potentialUser = req.body;
 
-    console.log('user: ' + potentialUser);
-
     const user = users.find(user => user.username == potentialUser.username);
 
     if(user == undefined) {
